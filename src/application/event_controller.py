@@ -22,6 +22,8 @@ def get():
 
 
 @event_controller.route('/event/sync', methods=['POST'])
+@error_handler
+@response_handler
 def post():
     id = request.args.get('id')
 

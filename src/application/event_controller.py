@@ -15,7 +15,6 @@ def get():
     id = request.args.get('id')
 
     if id:
-        event_client = EventClient()
         return event_client.get_by_id(id)
 
     return event_client.get_all()

@@ -13,3 +13,10 @@ class JsonParser(object):
             return json[name][sub_name]
         except:
             return None
+
+    @classmethod
+    def try_get_parameter_with_two_sub_name(cls, json, name, sub_name, other_name):
+        try:
+            return json[name][sub_name][other_name]
+        except:
+            return None

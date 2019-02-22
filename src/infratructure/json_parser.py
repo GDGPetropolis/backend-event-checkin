@@ -7,3 +7,9 @@ class JsonParser(object):
         except:
             return None
 
+    @classmethod
+    def try_get_parameter_with_sub_name(cls, json, name, sub_name):
+        try:
+            return json[name][sub_name]
+        except:
+            return None

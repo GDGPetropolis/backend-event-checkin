@@ -1,17 +1,13 @@
-import json
-import http.client
-
 from src.clients.base_client import BaseClient
+from src.domain.entities.event import Event
 
 
 class PersonClient(BaseClient):
 
-    def __init__(self, base_url: str, group: str, api_key: str):
-        super().__init__(base_url, group, api_key)
-
     def get_all(self):
         page_index = 1
 
-        json_obj = self.get("events?photo-host=public&page=" + str(page_index))
+        events = self.get("events?photo-host=public&page=" + str(page_index), Event.from_json)
 
-        print(json_obj)
+        for event in events:
+            print(event.to_json())

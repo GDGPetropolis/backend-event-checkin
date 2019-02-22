@@ -2,7 +2,7 @@ from functools import wraps
 from flask import Response
 
 
-def has_valid_data_in_response(f):
+def response_handler(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
         data = f(*args, **kwargs)

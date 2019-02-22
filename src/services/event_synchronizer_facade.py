@@ -9,4 +9,4 @@ class EventSynchronizerFacade(object):
         participation_synchronizar = ParticipationSynchronizer()
 
         event_synchronizer.sync_with_new_data(id)
-        participation_synchronizar.sync_with_new_data(id)
+        #participation_synchronizar.sync_with_new_data(id)

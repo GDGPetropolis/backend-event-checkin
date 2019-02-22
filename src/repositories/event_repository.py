@@ -1,4 +1,4 @@
-from src.application.mappers.event_mapper import EventMapper
+from src.mappers.event_mapper import EventMapper
 from src.domain.entities.event import Event
 from src.repositories.entities.event import Event as DataEvent
 

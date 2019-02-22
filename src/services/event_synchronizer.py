@@ -1,4 +1,4 @@
-from src.application.mappers.event_mapper import EventMapper
+from src.mappers.event_mapper import EventMapper
 from src.clients.event_client import EventClient
 from src.repositories.event_repository import EventRepository
 

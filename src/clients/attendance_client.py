@@ -1,5 +1,5 @@
 from src.clients.base_client import BaseClient
-from src.domain.entities.participant import Participant
+from src.application.models.participant import Participant
 
 
 class AttendanceClient(BaseClient):

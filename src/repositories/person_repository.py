@@ -1,5 +1,7 @@
 from src.domain.entities.person import Person
+from src.mappers.person_mapper import PersonMapper
 from src.repositories.entities.person import Person as DataPerson
+
 
 class PersonRepository(object):
 
@@ -7,8 +9,9 @@ class PersonRepository(object):
         return None
 
     def get_by_id(self, id):
-        data_event = DataPerson.select().where(DataPerson.id == id).first()
-        return PersonMapper.data_to_domain(data_event)
+        data_person = DataPerson.select().where(DataPerson.id == id).first()
+        return PersonMapper.data_to_domain(data_person)
 
     def get_all(self):
-        return None
+        data_persons = DataPerson.select()
+        return [PersonMapper.data_to_domain(data_person) for data_person in data_persons]

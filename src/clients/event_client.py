@@ -6,8 +6,7 @@ class EventClient(BaseClient):
 
     def get_all(self):
         page_index = 1
+        return self._get_many("events?photo-host=public&page=" + str(page_index), Event.from_json)
 
-        events = self.get("events?photo-host=public&page=" + str(page_index), Event.from_json)
-
-        for event in events:
-            print(event.to_json())
+    def get_by_id(self, id: str):
+        return self._get_one("events/" + id + "?photo-host=public", Event.from_json)

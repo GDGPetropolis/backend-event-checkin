@@ -22,9 +22,15 @@ class EventSynchronizerFacade(object):
         event_repository = EventRepository()
         events = event_client.get_all()
 
+        updated_events = list()
+
         for event in events:
             if event_repository.get_by_id(event.id):
                 self.sync_one_by_id(event.id)
             else:
                 event_repository.insert(event)
                 self.sync_one_by_id(event.id)
+
+            updated_events.append(event_repository.get_by_id(event.id))
+
+        return updated_events

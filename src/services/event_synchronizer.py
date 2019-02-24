@@ -11,4 +11,4 @@ class EventSynchronizer(object):
 
         event_model = event_client.get_by_id(id)
         event = EventMapper.model_to_domain(event_model)
-        return event_repository.update(event)
+        event_repository.update(event)

@@ -33,13 +33,13 @@ class EventModel(SerializableObject):
 
     @classmethod
     def from_json(cls, json):
-            id = JsonParser.try_get_parameter(json, "id")
-            group_name = JsonParser.try_get_parameter_with_sub_name(json, "group", "name")
-            name = JsonParser.try_get_parameter(json, "name")
-            status = JsonParser.try_get_parameter(json, "status")
-            local_date = JsonParser.try_get_parameter(json, "local_date")
-            local_time = JsonParser.try_get_parameter(json, "local_time")
-            link = JsonParser.try_get_parameter(json, "link")
+        id = JsonParser.try_get_parameter(json, "id")
+        group_name = JsonParser.try_get_parameter_with_sub_name(json, "group", "name")
+        name = JsonParser.try_get_parameter(json, "name")
+        status = JsonParser.try_get_parameter(json, "status")
+        local_date = JsonParser.try_get_parameter(json, "local_date")
+        local_time = JsonParser.try_get_parameter(json, "local_time")
+        link = JsonParser.try_get_parameter(json, "link")
 
-            return cls(id=id, group_name=group_name, name=name, status=status, local_date=local_date, local_time=local_time,
-                       link=link, persons=list())
+        return cls(id=id, group_name=group_name, name=name, status=status, local_date=local_date, local_time=local_time,
+                   link=link, persons=list())

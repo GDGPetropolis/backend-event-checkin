@@ -9,8 +9,13 @@ class EventClient(BaseClient):
 
     def get_all(self):
         page_index = 1
-        event_model = self._get_many("events?photo-host=public&page=" + str(page_index), EventModel.from_json)
-        return EventMapper.model_to_domain(event_model)
+
+        upcomming_event_models = self._get_many("events?photo-host=public&page=" + str(page_index), EventModel.from_json)
+        past_event_models = self._get_many("events?photo-host=public&status=past&page=" + str(page_index), EventModel.from_json)
+
+        upcomming_event_models.extend(past_event_models)
+
+        return [EventMapper.model_to_domain(event_model) for event_model in upcomming_event_models]
 
     def get_by_id(self, id: str):
         event_model = self._get_one("events/" + id + "?photo-host=public", EventModel.from_json)

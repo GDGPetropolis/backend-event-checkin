@@ -14,8 +14,8 @@ except:
     database = "GdgDatabase"
     user = "GdgUser"
     password = "GdgPassword"
-    host = "localhost"
-    port = 3306
+    host = "172.17.0.1"
+    port = 3307
 
     print("Using Local Environment")
 

@@ -22,7 +22,11 @@ class ParticipationRepository(object):
         return [ParticipationMapper.data_to_domain(data_participation) for data_participation in data_participations]
 
     def insert(self, domain: DomainParticipation):
-        data = DataParticipation.insert(event=domain.event_id, person=domain.person_id)
+        print(domain.to_json())
+        data = DataParticipation.create(event=domain.event_id, person=domain.person_id)
+        print("before save")
         data.save()
 
-        return self.get_by_event_id_and_person_id(event_id=domain.event_id, person_id=domain.person_id)
+        print("saved")
+
+        return self.get_by_event_id_and_person_id(event_id=int(domain.event_id), person_id=int(domain.person_id))

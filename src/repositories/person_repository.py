@@ -6,7 +6,8 @@ from src.repositories.entities.person import Person as DataPerson
 class PersonRepository(object):
 
     def insert(self, person: Person):
-        data = DataPerson.insert(id=person.id, name=person.name, email=person.email, photo=person.photo)
+        print(person.to_json())
+        data = DataPerson.create(id=person.id, name=person.name, email=person.email, photo=person.photo)
 
         data.save()
         return self.get_by_id(person.id)

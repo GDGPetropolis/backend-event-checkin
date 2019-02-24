@@ -24,7 +24,8 @@ class PersonSynchronizer(object):
                 print("pessoa atualizada")
 
             if not participation_repository.get_by_event_id_and_person_id(event_id, person.id):
-                participation = Participation(event_id=event_id, person_id=person.id)
+                print("adicionando participacao")
+                participation = Participation(event_id=int(event_id), person_id=int(person.id))
                 participation_repository.insert(participation)
                 print("adicionado participacao")
             else:

@@ -6,4 +6,4 @@ class Person(BaseModel):
     id = IntegerField()
     name = CharField()
     photo = CharField()
-    email = CharField()
+    email = CharField(null=True)

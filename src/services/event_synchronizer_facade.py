@@ -1,12 +1,19 @@
 from src.services.event_synchronizer import EventSynchronizer
-from src.services.participation_synchronizer import ParticipationSynchronizer
+from src.services.person_synchronizer import PersonSynchronizer
+from src.repositories.event_repository import EventRepository
 
 
 class EventSynchronizerFacade(object):
 
-    def sync_with_new_data(self, id: int):
+    def sync_one_by_id(self, id: int):
         event_synchronizer = EventSynchronizer()
-        participation_synchronizar = ParticipationSynchronizer()
+        participation_synchronizer = PersonSynchronizer()
+        event_repository = EventRepository()
 
-        event_synchronizer.sync_with_new_data(id)
-        #participation_synchronizar.sync_with_new_data(id)
+        event_synchronizer.sync_one_by_id(id)
+        print("evento sincronizado")
+
+        participation_synchronizer.sync_by_event_id(id)
+        print("pessoas e participacoes atualizadas")
+
+        return event_repository.get_by_id(id)

@@ -25,10 +25,11 @@ def get():
 @error_handler
 @response_handler
 def post():
+    event_synchronizer = EventSynchronizerFacade()
+
     id = request.args.get('id')
 
     if id:
-        event_synchronizer = EventSynchronizerFacade()
-        event_synchronizer.sync_with_new_data(id)
-
-    return "sync"
+        return event_synchronizer.sync_one_by_id(id)
+    else:
+        return event_synchronizer.sync_all()

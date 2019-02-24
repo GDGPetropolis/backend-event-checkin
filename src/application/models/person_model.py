@@ -4,7 +4,7 @@ from src.infratructure.json_parser import JsonParser
 from src.infratructure.serializable_object import SerializableObject
 
 
-class ParticipantModel(SerializableObject):
+class PersonModel(SerializableObject):
 
     def __init__(self, id: int, name: str, photo: str):
         self.id = id

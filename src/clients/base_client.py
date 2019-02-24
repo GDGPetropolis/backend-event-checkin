@@ -15,7 +15,6 @@ class BaseClient(object):
 
     def _get_one(self, path: str, from_json):
         json_response = self.__do_request(path, "GET")
-        print(json_response)
         return from_json(json_response)
 
     def __do_request(self, path, verb):

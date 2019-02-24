@@ -7,16 +7,15 @@ from src.infratructure.serializable_object import SerializableObject
 class EventModel(SerializableObject):
 
     def __init__(self, id: int, group_name: str, name: str, status: str, local_date: str, local_time: str,
-                 go_list_count: int, wait_list_count: int, link: str):
+                 link: str, persons: list):
         self.id = id
         self.group_name = group_name
         self.name = name
         self.status = status
         self.local_date = local_date
         self.local_time = local_time
-        self.go_list_count = go_list_count
-        self.wait_list_count = wait_list_count
         self.link = link
+        self.persons = persons
 
     @classmethod
     def random(cls):
@@ -26,12 +25,11 @@ class EventModel(SerializableObject):
         status = str(uuid.uuid4())
         local_date = str(uuid.uuid4())
         local_time = str(uuid.uuid4())
-        go_list_count = randint(0, 10)
-        wait_list_count = randint(0, 10)
         link = str(uuid.uuid4())
+        persons = [i for i in range(1, 10)]
 
         return cls(id=id, group_name=group_name, name=name, status=status, local_date=local_date, local_time=local_time,
-                   go_list_count=go_list_count, wait_list_count=wait_list_count, link=link)
+                   link=link, persons=persons)
 
     @classmethod
     def from_json(cls, json):
@@ -41,9 +39,7 @@ class EventModel(SerializableObject):
             status = JsonParser.try_get_parameter(json, "status")
             local_date = JsonParser.try_get_parameter(json, "local_date")
             local_time = JsonParser.try_get_parameter(json, "local_time")
-            go_list_count = JsonParser.try_get_parameter(json, "yes_rsvp_count")
-            wait_list_count = JsonParser.try_get_parameter(json, "waitlist_count")
             link = JsonParser.try_get_parameter(json, "link")
 
             return cls(id=id, group_name=group_name, name=name, status=status, local_date=local_date, local_time=local_time,
-                       go_list_count=go_list_count, wait_list_count=wait_list_count, link=link)
+                       link=link, persons=list())

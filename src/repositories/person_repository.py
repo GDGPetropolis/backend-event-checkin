@@ -5,10 +5,19 @@ from src.repositories.entities.person import Person as DataPerson
 
 class PersonRepository(object):
 
-    def update(self, person: Person):
-        return None
+    def insert(self, person: Person):
+        data = DataPerson.insert(id=person.id, name=person.name, email=person.email, photo=person.photo)
 
-    def get_by_id(self, id):
+        data.save()
+        return self.get_by_id(person.id)
+
+    def update(self, person: Person):
+        data = DataPerson.update(name=person.name, email=person.email, photo=person.photo).where(DataPerson.id == person.id)
+
+        data.execute()
+        return self.get_by_id(int(person.id))
+
+    def get_by_id(self, id: int):
         data_person = DataPerson.select().where(DataPerson.id == id).first()
         return PersonMapper.data_to_domain(data_person)
 

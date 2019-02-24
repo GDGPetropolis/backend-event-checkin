@@ -8,9 +8,14 @@ from src.repositories.entities.participation import Participation as DataPartici
 class EventRepository(object):
 
     def update(self, event: Event):
-        print(event.to_json())
+        data = DataEvent.update(name=event.name, group_name=event.group_name, link=event.link,
+                                local_date=event.local_date, local_time=event.local_time, status=event.status)\
+            .where(DataEvent.id == event.id)
 
-    def get_by_id(self, id):
+        data.execute()
+        return self.get_by_id(int(event.id))
+
+    def get_by_id(self, id: int):
         data_event = DataEvent.select().where(DataEvent.id == id).first()
         domain_event = EventMapper.data_to_domain(data_event)
 

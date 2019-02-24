@@ -7,7 +7,8 @@ def error_handler(f):
     def decorated_function(*args, **kwargs):
         try:
             return f(*args, **kwargs)
-        except:
+        except Exception as ex:
+            print(ex)
             return Response(status=500)
 
     return decorated_function

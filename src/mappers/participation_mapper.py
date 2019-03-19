@@ -7,9 +7,9 @@ class ParticipationMapper(object):
     @classmethod
     def data_to_domain(cls, data: DataParticipation):
         if data:
-            return DomainParticipation(id=data.id, event_id=data.event_id, person_id=data.person_id)
+            return DomainParticipation(id=data.id, event_id=data.event_id, person_id=data.person_id, checkin=data.checkin)
 
     @classmethod
     def domain_to_model(cls, domain: DomainParticipation):
         if domain:
-            return DataParticipation(id=domain.id, event_id=domain.event_id, person_id=domain.person_id)
+            return DataParticipation(id=domain.id, event_id=domain.event_id, person_id=domain.person_id, checkin=domain.checkin)

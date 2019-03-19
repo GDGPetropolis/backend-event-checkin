@@ -10,11 +10,17 @@ class PersonRepository(object):
         data.save()
         return self.get_by_id(int(person.id))
 
-    def update(self, person: Person):
-        data = DataPerson.update(name=person.name, email=person.email, photo=person.photo).where(DataPerson.id == person.id)
+    def update_without_email(self, person: Person):
+        data = DataPerson.update(name=person.name, photo=person.photo).where(DataPerson.id == person.id)
 
         data.execute()
         return self.get_by_id(int(person.id))
+
+    def update_email(self, id: int, email):
+        data = DataPerson.update(email=email).where(DataPerson.id == id)
+
+        data.execute()
+        return self.get_by_id(int(id))
 
     def get_by_id(self, id: int):
         data_person = DataPerson.select().where(DataPerson.id == id).first()

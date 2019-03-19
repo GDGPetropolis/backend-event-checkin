@@ -6,6 +6,8 @@ from src.repositories.entities.person import Person
 
 class Participation(BaseModel):
     id = IntegerField()
+    checkin = BooleanField(default=False)
     event = ForeignKeyField(Event, backref='participations')
     person = ForeignKeyField(Person, backref='participations')
+
 

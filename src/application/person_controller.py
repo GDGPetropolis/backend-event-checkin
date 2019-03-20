@@ -23,7 +23,7 @@ def get():
     return person_repository.get_all()
 
 
-@person_controller.route('/person/email', methods=['PATCH'])
+@person_controller.route('/person', methods=['PUT'])
 @error_handler
 @response_handler
 def patch():
@@ -31,7 +31,7 @@ def patch():
 
     if person:
         person_repository = PersonRepository()
-        data = person_repository.update_email(person.id, person.email)
+        data = person_repository.update_email_and_name(person.id, person.email, person.name)
         return data
 
 

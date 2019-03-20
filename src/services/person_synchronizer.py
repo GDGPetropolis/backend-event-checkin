@@ -17,7 +17,7 @@ class PersonSynchronizer(object):
             if not person_repository.get_by_id(person.id):
                 person_repository.insert(person)
             else:
-                person_repository.update_without_email(person)
+                person_repository.update_without_email_and_name(person)
 
             if not participation_repository.get_by_event_id_and_person_id(event_id, person.id):
                 participation = Participation(event_id=int(event_id), person_id=int(person.id), checkin=False)

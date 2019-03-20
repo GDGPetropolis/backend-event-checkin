@@ -6,18 +6,18 @@ from src.repositories.entities.person import Person as DataPerson
 class PersonRepository(object):
 
     def insert(self, person: Person):
-        data = DataPerson.create(id=person.id, name=person.name, email=person.email, photo=person.photo)
+        data = DataPerson.create(id=person.id, nick=person.nick, email=person.email, photo=person.photo, name=person.name)
         data.save()
         return self.get_by_id(int(person.id))
 
-    def update_without_email(self, person: Person):
-        data = DataPerson.update(name=person.name, photo=person.photo).where(DataPerson.id == person.id)
+    def update_without_email_and_name(self, person: Person):
+        data = DataPerson.update(nick=person.nick, photo=person.photo).where(DataPerson.id == person.id)
 
         data.execute()
         return self.get_by_id(int(person.id))
 
-    def update_email(self, id: int, email):
-        data = DataPerson.update(email=email).where(DataPerson.id == id)
+    def update_email_and_name(self, id: int, email: str, name: str):
+        data = DataPerson.update(email=email, name=name).where(DataPerson.id == id)
 
         data.execute()
         return self.get_by_id(int(id))

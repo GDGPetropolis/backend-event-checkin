@@ -26,3 +26,10 @@ class ParticipationRepository(object):
         data.save()
 
         return self.get_by_event_id_and_person_id(event_id=int(domain.event_id), person_id=int(domain.person_id))
+
+    def set_checkin_by_event_and_person_id(self, person_id: int, event_id: int, status: bool):
+        data = DataParticipation.update(checkin=status).where(DataParticipation.person == person_id).where(DataParticipation.event == event_id)
+
+        data.execute()
+        return self.get_by_event_id_and_person_id(event_id=event_id, person_id=person_id)
+

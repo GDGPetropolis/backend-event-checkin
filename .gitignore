@@ -108,6 +108,8 @@ venv.bak/
 .idea/
 .idea/*
 
-# assets
+# assets and output
 assets/
 assets/*
+output/
+output/*

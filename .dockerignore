@@ -140,3 +140,7 @@ ENV/
 
 # mypy
 .mypy_cache/
+
+# assets and output
+assets/*
+output/*

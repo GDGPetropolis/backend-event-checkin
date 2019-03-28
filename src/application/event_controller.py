@@ -1,4 +1,4 @@
-from flask import Blueprint, request
+from flask import Blueprint, request, Response
 from src.application.filters.error_handler import error_handler
 from src.application.filters.response_handler import response_handler
 from src.repositories.event_repository import EventRepository
@@ -38,11 +38,13 @@ def post():
 
 @event_controller.route('/event/gen', methods=['POST'])
 @error_handler
-@response_handler
 def gen():
     id = request.args.get('id')
 
     if id:
         certificate_generator = EventCertificateGenerator()
         certificate_generator.generate_by_event_id(event_id=id)
+
+        return Response(status=200, mimetype='application/json')
+
 
